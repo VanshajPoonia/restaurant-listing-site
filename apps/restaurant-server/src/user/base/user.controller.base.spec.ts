@@ -20,39 +20,51 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   createdAt: new Date(),
+  description: "exampleDescription",
   firstName: "exampleFirstName",
   id: "exampleId",
   lastName: "exampleLastName",
   password: "examplePassword",
+  price: 42.42,
+  title: "exampleTitle",
   updatedAt: new Date(),
   username: "exampleUsername",
 };
 const CREATE_RESULT = {
   createdAt: new Date(),
+  description: "exampleDescription",
   firstName: "exampleFirstName",
   id: "exampleId",
   lastName: "exampleLastName",
   password: "examplePassword",
+  price: 42.42,
+  title: "exampleTitle",
   updatedAt: new Date(),
   username: "exampleUsername",
 };
 const FIND_MANY_RESULT = [
   {
     createdAt: new Date(),
+    description: "exampleDescription",
     firstName: "exampleFirstName",
     id: "exampleId",
     lastName: "exampleLastName",
     password: "examplePassword",
+    price: 42.42,
+    title: "exampleTitle",
     updatedAt: new Date(),
     username: "exampleUsername",
   },
 ];
 const FIND_ONE_RESULT = {
   createdAt: new Date(),
+  description: "exampleDescription",
   firstName: "exampleFirstName",
   id: "exampleId",
   lastName: "exampleLastName",
   password: "examplePassword",
+  price: 42.42,
+  title: "exampleTitle",
   updatedAt: new Date(),
   username: "exampleUsername",
 };

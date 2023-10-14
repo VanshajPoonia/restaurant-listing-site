@@ -11,13 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import {
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsNumber,
+} from "class-validator";
+import { ListingCreateNestedManyWithoutUsersInput } from "./ListingCreateNestedManyWithoutUsersInput";
+import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { TripCreateNestedManyWithoutUsersInput } from "./TripCreateNestedManyWithoutUsersInput";
+import { WishlistCreateNestedManyWithoutUsersInput } from "./WishlistCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  description!: string;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -41,12 +58,32 @@ class UserCreateInput {
   lastName?: string | null;
 
   @ApiProperty({
+    required: false,
+    type: () => ListingCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ListingCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ListingCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  listings?: ListingCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
     required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
   password!: string;
+
+  @ApiProperty({
+    required: true,
+    type: Number,
+  })
+  @IsNumber()
+  @Field(() => Number)
+  price!: number;
 
   @ApiProperty({
     required: true,
@@ -61,7 +98,39 @@ class UserCreateInput {
   })
   @IsString()
   @Field(() => String)
+  title!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => TripCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => TripCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => TripCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  trips?: TripCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   username!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => WishlistCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => WishlistCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => WishlistCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  wishlists?: WishlistCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };
